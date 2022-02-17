@@ -1,0 +1,12 @@
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel"
+    "pandas"
+    "requests"
+    "urllib.request"
+    "parselmouth"
+    "tgt"
+    "plotly.express"
+]
+build-backend = "setuptools.build_meta"
