@@ -57,7 +57,7 @@ In this example it would be
 The function is stuctured like this: </br>
 `dataframe, figure = plotFormants([fileNames], [vowels], language, centroid)`</br>
 For this example the function call would look like this:</br>
-`df, fig = plotFormants(["sample1", "sample2", "sample3],["{", "}:","3:","6","6:","e","I", "i:", "O", "o:", "U" ], "eng-NZ", True)`
+`df, fig = plotFormants(["sample1", "sample2", "sample3"],["{", "}:","3:","6","6:","e","I", "i:", "O", "o:", "U" ], "eng-NZ", True)`
 Lets break down each parameter:
 
 The `plotFormants()` function takes four input arguments:
