@@ -1,5 +1,5 @@
 # performant
-## A toolset for easy formant extraction and visualization from wav files and TTS models
+## A toolset for easy formant extraction and visualization.
 
 Performant is a tool to extract formant data and visualise vowel space in python. It utilises the BAS WebMausBasic API along side Praat's formant tracking algorithm to create a
 streamline process of obtaining formants directly from audio and text inputs. 
