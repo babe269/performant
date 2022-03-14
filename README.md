@@ -10,7 +10,7 @@ streamline process of obtaining formants directly from audio and text inputs.
 
 then: </br>
 
-`from performant install tools`
+`from performant import tools`
 
 in your python code. 
 
