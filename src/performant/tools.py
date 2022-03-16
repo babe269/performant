@@ -1,23 +1,24 @@
 def plotFormants(fileNames, vowels, language, centroid):
   #Requirements if running on Colab: install !pip install praat-parselmouth !pip install tgt 
-  #cd into a directory to store wav, txt and textgrid files before running. 
-  import pandas as pd
-  import numpy as np
+  #cd into a directory to store wav, txt and textgrid files before running.
+  import os
   import requests
+  import pandas as pd
   import urllib.request 
   import parselmouth
   import tgt
   import plotly.express as px
+  import numpy as np
 
   vl = []
   f1l = []
   f2l = []
   #List of vowels for NZE
   vowels = vowels
-  
+  print(os.getcwd())
   for fileName in fileNames:
       #Call WebMaus Basic Api to generate TextGrids.
-
+      print("  "+"└── "+ fileName)
       headers = {
         'content-type': 'multipart/form-data',
       }
@@ -54,27 +55,34 @@ def plotFormants(fileNames, vowels, language, centroid):
   #Store formant values in dataframe.
   d = {'vowel': vl, 'f1': f1l, 'f2': f2l}
   df=pd.DataFrame(d)
-
+  display(df)
   if centroid == True:
     f1Centroid = df.groupby('vowel')['f1'].apply(lambda x: np.mean(x.tolist(), axis=0))
     f2Centroid = df.groupby('vowel')['f2'].apply(lambda x: np.mean(x.tolist(), axis=0))
     d = {'f1': f1Centroid, 'f2': f2Centroid}
     finaldf=pd.DataFrame(d)
     
-    fig = px.scatter(finaldf, x="f2", y="f1",color= finaldf.index,  text = finaldf.index, width=800, height=700)
+    fig = px.scatter(finaldf, x="f2", y="f1",color= finaldf.index,  text = finaldf.index, width=1000, height=900)
+    fig.update_layout(
+    font_family="Helvetica",
+    font_color="black",
+    font = {"size": 20}
+    )
     fig.update_xaxes(
-        tickangle = 90,
-        title_text = "F2 (HZ)",
-        title_font = {"size": 15},
-        title_standoff = 25)
+              tickangle = 90,
+              title_text = "F2 (Hz)",
+              title_font = {"size": 20},
+              title_standoff = 20
+    )
     fig.update_yaxes(
-        tickangle = 90,
-        title_text = "F1 (HZ)",
-        title_font = {"size": 15},
-        title_standoff = 25)
+              tickangle = 90,
+              title_text = "F1 (Hz)",
+              title_font = {"size": 20},
+              title_standoff = 20
+    )
     fig.update_layout({
-    'plot_bgcolor': 'rgba(0, 0, 0, 0)',
-    'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+    'plot_bgcolor': '#ffffff',
+    'paper_bgcolor': '#ffffff',
     'yaxis_gridcolor':'#e5e5ea', 
     'xaxis_gridcolor':'#e5e5ea' 
     })
@@ -89,20 +97,27 @@ def plotFormants(fileNames, vowels, language, centroid):
   else:
     finaldf = df
 
-    fig = px.scatter(finaldf, x="f2", y="f1",color= "vowel",  text = "vowel", width=800, height=700)
+    fig = px.scatter(finaldf, x="f2", y="f1",color= "vowel",  text = "vowel", width=1000, height=900)
+    fig.update_layout(
+    font_family="Helvetica",
+    font_color="black",
+    font = {"size": 20}
+    )
     fig.update_xaxes(
-        tickangle = 90,
-        title_text = "F2 (Hz)",
-        title_font = {"size": 15},
-        title_standoff = 25)
+              tickangle = 90,
+              title_text = "F2 (Hz)",
+              title_font = {"size": 20},
+              title_standoff = 20
+    )
     fig.update_yaxes(
-        tickangle = 90,
-        title_text = "F1 (Hz)",
-        title_font = {"size": 15},
-        title_standoff = 25)
+              tickangle = 90,
+              title_text = "F1 (Hz)",
+              title_font = {"size": 20},
+              title_standoff = 20
+    )
     fig.update_layout({
-    'plot_bgcolor': 'rgba(0, 0, 0, 0)',
-    'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+    'plot_bgcolor': '#ffffff',
+    'paper_bgcolor': '#ffffff',
     'yaxis_gridcolor':'#e5e5ea', 
     'xaxis_gridcolor':'#e5e5ea' 
     })
@@ -115,7 +130,7 @@ def plotFormants(fileNames, vowels, language, centroid):
     
   return finaldf
 
-def plotPath(folderNames, vowels, language, centroid):
+def plotPath(folderNames, vowels, language):
     import os
     import requests
     import pandas as pd
@@ -134,9 +149,9 @@ def plotPath(folderNames, vowels, language, centroid):
         path = os.getcwd() +"\\"+ folder
         os.chdir(path)
         print(os.getcwd())
-        mylist = os.listdir(path)
+        namelist = os.listdir(path)
         fileNames =[]
-        for name in mylist:
+        for name in namelist:
             unique = name.split(".")[0]
             if unique not in fileNames:
                 fileNames.append(unique)
@@ -177,37 +192,54 @@ def plotPath(folderNames, vowels, language, centroid):
                 vl.append(j.text)
                 f1l.append(f1)
                 f2l.append(f2)
-        #Store formant values in dataframe.
-        d = {'vowel': vl, 'f1': f1l, 'f2': f2l}
-        df=pd.DataFrame(d)
-        f1Centroid = df.groupby('vowel')['f1'].apply(lambda x: np.mean(x.tolist(), axis=0))
-        f2Centroid = df.groupby('vowel')['f2'].apply(lambda x: np.mean(x.tolist(), axis=0))
-        d = {'f1': f1Centroid, 'f2': f2Centroid, 'steps': folder, 'point': index}
-        df2=pd.DataFrame(d)
-        data.append(df2)
+        if folder == "truth":      
+            d = {'vowel': vl, 'f1': f1l, 'f2': f2l}
+            df=pd.DataFrame(d)
+            f1Centroid = df.groupby('vowel')['f1'].apply(lambda x: np.mean(x.tolist(), axis=0))
+            f2Centroid = df.groupby('vowel')['f2'].apply(lambda x: np.mean(x.tolist(), axis=0))
+            d = { 'f1': f1Centroid, 'f2': f2Centroid}
+            rDF=pd.DataFrame(d)
+            rDF = rDF.reset_index()
+            
+        else:
+            #Store formant values in dataframe.
+            d = {'vowel': vl, 'f1': f1l, 'f2': f2l}
+            df=pd.DataFrame(d)
+            f1Centroid = df.groupby('vowel')['f1'].apply(lambda x: np.mean(x.tolist(), axis=0))
+            f2Centroid = df.groupby('vowel')['f2'].apply(lambda x: np.mean(x.tolist(), axis=0))
+            d = {'f1': f1Centroid, 'f2': f2Centroid, 'steps': folder, 'point': index}
+            df2=pd.DataFrame(d)
+            data.append(df2)
         os.chdir(originpath)
     full = pd.concat(data)
     df = full
-    fig = px.line(full, x="f2", y="f1",color=df.index, width=1000, height=900, line_shape= 'spline', text = 'point', line_group=df.index, )
-
-    for i, d in enumerate(fig.data):
-       for index, row in rDF.iterrows():
-          if d.legendgroup == row.labels:
-            fig.add_trace(go.Scatter(x=[row.T2], y = [row.T1], mode = "markers+text", showlegend=False, marker_color=d.line.color, text=row.labels, textfont=dict(
-              size=18,
-              color=d.line.color
-          )))
-
+    fig = px.line(full, x="f2", y="f1",color=df.index, width=1000, height=900, line_shape= 'spline', text = 'steps', line_group=df.index, )
+    if 'truth' in folderNames:
+        for i, d in enumerate(fig.data):
+          for index, row in rDF.iterrows():
+            if d.legendgroup == row.vowel:
+              fig.add_trace(go.Scatter(x=[row.f2], y = [row.f1], mode = "markers+text", showlegend=False, marker_color=d.line.color, text=row.vowel, textfont=dict(
+                size=30,
+                color=d.line.color
+                )))
+    
+    fig.update_layout(
+    font_family="Helvetica",
+    font_color="black",
+    font = {"size": 20}
+    )
     fig.update_xaxes(
               tickangle = 90,
-              title_text = "F2 (HZ)",
-              title_font = {"size": 15},
-              title_standoff = 25)
+              title_text = "F2 (Hz)",
+              title_font = {"size": 20},
+              title_standoff = 20
+    )
     fig.update_yaxes(
               tickangle = 90,
-              title_text = "F1 (HZ)",
-              title_font = {"size": 15},
-              title_standoff = 25)
+              title_text = "F1 (Hz)",
+              title_font = {"size": 20},
+              title_standoff = 20
+    )
     fig.update_layout({
     'plot_bgcolor': '#ffffff',
     'paper_bgcolor': '#ffffff',
