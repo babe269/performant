@@ -4,6 +4,17 @@
 Performant is a tool to extract formant data and visualise vowel space in python. It utilises the BAS WebMausBasic API along side Praat's formant tracking algorithm to create a
 streamline process of obtaining formants directly from audio and text inputs. 
 
+![Plots](https://user-images.githubusercontent.com/48380210/159626786-eae4a098-a7b6-4723-87d7-5a90ff704e0d.png)
+
+peformant streamlines the process of obtaining formant data in python and allows easy visualisation to develop and understanding of how a speaker sounds.
+Formants are a range of frequencies in which there is absolute or relative maximum in the sound spectrum. The frequency at the maximum is the formant frequency . The first formant(F1), corresponds to the vertical position of the tongue body within the mouth and typically associated with frequencies between 200 and 900 Hz. The second formant (F2), corresponds to the horizontal position of the tongue body within the mouth and refers to frequencies between 1300 - 2600 Hz for New Zealand English. The position of the tongue in the mouth constricts air flow within the throat and the roof of the mouth adjusting the frequency of the air as it passes through. A large part of voiced sections in human speech are attributed to vowels, and vowels often exhibit noticeable change in first and the second formant frequencies. 
+
+Additionally, performant can be used in organised groups of data, such as comparing speakers and even machine learning models.
+![evolution](https://user-images.githubusercontent.com/48380210/159627683-15f88cc7-9e6d-4acf-be93-db2e58ae596d.gif)
+
+In the above example, performant can be used to show how speaker adaptaion between US and NZE for Tacotron 2 can be visualised in a vowel space. 
+(For more information on this study see XXXX)
+
 ## Installation 
 ### With pip 
 `$ pip install performant` </br>
@@ -13,6 +24,7 @@ then: </br>
 `from performant import tools`
 
 in your python code. 
+
 
 ### From Source
 Examples of how to call functions are illustrated below. Clone the repository and use the [tools script](performant/src/performant/tools.py) for the desired function.
