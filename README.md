@@ -141,5 +141,10 @@ and it has two output argument:
 
 Note that this function automatically creates a centroid value of each vowel for each speaker.
 
+## How to Cite
+If you wish to cite performant, you may cite this study submitted to Interspeech 2022: XXXX
+
+Bibtex:
+ 
 ## Contact: 
 me: babe269@aucklanduni.ac.nz
