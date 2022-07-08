@@ -18,7 +18,7 @@ In the above example, performant can be used to show how speaker adaptaion betwe
 
 ## Installation 
 ### With pip 
-`$ pip install performant` </br>
+`$ pip install performant-babe269` </br>
 
 then: </br>
 
