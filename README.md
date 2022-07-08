@@ -28,7 +28,7 @@ in your python code.
 
 
 ### From Source
-Examples of how to call functions are illustrated below. Clone the repository and use the [tools script](performant/src/performant/tools.py) for the desired function.
+Examples of how to call functions are illustrated below. Clone the repository and use the [tools script](/src/performant/tools.py) for the desired function.
 ```
 $ git clone https://github.com/babe269/performant
 $ cd performant
@@ -41,7 +41,7 @@ $git pull
 $git install -- upgrade .
 ```
 ## Usage
-performant contains two functions located in the [tools.py](performant/src/performant/tools.py) script.
+performant contains two functions located in the [tools.py](/src/performant/tools.py) script.
 - `plotFormants()` 
 - `plotPath()`
 
