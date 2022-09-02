@@ -138,8 +138,9 @@ and it has two output argument:
 Note that this function automatically creates a centroid value of each vowel for each speaker.
 
 ## How to Cite
-If you wish to cite performant, you may cite this study accpeted to Interspeech 2022: 
-  Abeysinghe B. N., James J, Watson C, and Marattukalam F, Visualising Model Training via Vowel Space for Text-To-Speech Systems, Accepted to Proc. Interspeech 2022 
- 
+If you wish to cite performant, you may cite this study accpeted to Interspeech 2022:</br>
+  Abeysinghe B. N., James J, Watson C, and Marattukalam F, Visualising Model Training via Vowel Space for Text-To-Speech Systems, Accepted to Proc. Interspeech 2022 </br> 
+Additionally, it's avalible on <a href=https://arxiv.org/abs/2208.09775>arxiv</a>
 ## Contact: 
-me: babe269@aucklanduni.ac.nz
+me: babe269@aucklanduni.ac.nz </br>
+Co-Author, Dr Jesin James: jesin.james@auckland.ac.nz
